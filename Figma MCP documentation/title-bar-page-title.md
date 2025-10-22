@@ -151,10 +151,7 @@ Controls whether the title bar action slot is displayed:
 
 **Subtitle Text (when shown):**
 - Font: Base Regular style (14px)
-- Fixed height: 23px
-- Fixed width: 84px
-- Overflow: Ellipsis
-- Text nowrap
+
 
 **Actions Section (when shown):**
 - Positioned to the right of context section

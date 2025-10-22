@@ -41,33 +41,13 @@ The button is available in two sizes, each with different padding values:
 ---
 
 ### Color Variants
-The button supports multiple color options to convey different semantic meanings:
+The button supports two color options to convey different semantic meanings:
 
 #### Default
 The standard color for general actions without specific semantic meaning.
 
 #### Destructive
 Used for dangerous or irreversible actions (e.g., delete, remove, cancel).
-
-#### Error
-Used to indicate error-related actions or states.
-
-#### Success
-Used to indicate positive or successful actions.
-
-#### Neutral
-Used for neutral actions that don't carry specific semantic weight.
-
-#### Warning
-Used to indicate caution or warning-related actions.
-
-#### Informative
-Used for informational actions or to draw attention to information.
-
-#### Feature
-Used to highlight new features or promotional actions.
-
-> **Note:** Not all color variants are available for all button variants. Default and Destructive colors are available across all variants (Primary, Secondary, Tertiary), while Error, Success, Neutral, Warning, Informative, and Feature colors are primarily available for the Secondary variant.
 
 ---
 
@@ -196,58 +176,48 @@ The state when the button is not interactive.
 #### Secondary Variant
 **Default Color:**
 - Background (default): `nova/button/secondary/default/color/neutral`
-- Background (hover): `nova/button/secondary/default/color/tertiary`
-- Text/Border: `nova/button/secondary/default/color/primary`
-- Text/Border (hover): `nova/button/secondary/default/color/secondary`
+- Background (hover): `nova/button/secondary/default/color/neutral` (no background change)
+- Background (pressed): `nova/button/secondary/default/color/tertiary`
+- Border (default): `nova/button/secondary/default/color/primary`
+- Border (hover): `nova/button/secondary/default/color/secondary`
+- Border (pressed): `nova/button/secondary/default/color/primary`
+- Text (default): `nova/button/secondary/default/color/primary`
+- Text (hover): `nova/button/secondary/default/color/secondary`
+- Text (pressed): `nova/button/secondary/default/color/primary`
 
 **Destructive Color:**
 - Background (default): `nova/button/secondary/destructive/color/neutral`
-- Background (hover): `nova/button/secondary/destructive/color/tertiary`
-- Text/Border: `nova/button/secondary/destructive/color/primary`
-- Text/Border (hover): `nova/button/secondary/destructive/color/secondary`
-
-**Error Color:**
-- Background: `nova/color/critical/quaternary` (background states)
-- Text/Border: `nova/color/critical/primary`
-- Accent: `nova/color/critical/accent`
-
-**Success Color:**
-- Background: `nova/color/success/quaternary` (background states)
-- Text/Border: `nova/color/success/primary`
-- Dark accent: `nova/color/success/dark`
-
-**Neutral Color:**
-- Background: `nova/color/neutral/quaternary` (background states)
-- Text/Border: `nova/color/neutral/primary`
-- Dark accent: `nova/color/neutral/dark`
-
-**Warning Color:**
-- Background: `nova/color/warning/quaternary` (background states)
-- Text/Border: `nova/color/warning/primary`
-- Dark accent: `nova/color/warning/dark`
-
-**Informative Color:**
-- Background: `nova/color/informative/quaternary` (background states)
-- Text/Border: `nova/color/informative/primary`
-- Dark accent: `nova/color/informative/dark`
-
-**Feature Color:**
-- Background: `nova/color/feature/quaternary` (background states)
-- Text/Border: `nova/color/feature/primary`
-- Dark accent: `nova/color/feature/dark`
+- Background (hover): `nova/button/secondary/destructive/color/neutral` (no background change)
+- Background (pressed): `nova/button/secondary/destructive/color/tertiary`
+- Border (default): `nova/button/secondary/destructive/color/primary`
+- Border (hover): `nova/button/secondary/destructive/color/secondary`
+- Border (pressed): `nova/button/secondary/destructive/color/primary`
+- Text (default): `nova/button/secondary/destructive/color/primary`
+- Text (hover): `nova/button/secondary/destructive/color/secondary`
+- Text (pressed): `nova/button/secondary/destructive/color/primary`
 
 #### Tertiary Variant
 **Default Color:**
-- Background (default): `nova/button/tertiary/default/color/neutral`
-- Background (hover): `nova/button/tertiary/default/color/tertiary`
-- Text: `nova/button/tertiary/default/color/primary`
+- Background (default): `nova/button/tertiary/default/color/neutral` (transparent)
+- Background (hover): `nova/button/tertiary/default/color/neutral` (no background change)
+- Background (pressed): `nova/button/tertiary/default/color/tertiary`
+- Border (default): none
+- Border (hover): `nova/border/basic` width, `nova/button/tertiary/default/color/secondary` color
+- Border (pressed): `nova/border/basic` width, `nova/button/tertiary/default/color/primary` color
+- Text (default): `nova/button/tertiary/default/color/primary`
 - Text (hover): `nova/button/tertiary/default/color/secondary`
+- Text (pressed): `nova/button/tertiary/default/color/primary`
 
 **Destructive Color:**
-- Background (default): `nova/button/tertiary/destructive/color/neutral`
-- Background (hover): `nova/button/tertiary/destructive/color/tertiary`
-- Text: `nova/button/tertiary/destructive/color/primary`
+- Background (default): `nova/button/tertiary/destructive/color/neutral` (transparent)
+- Background (hover): `nova/button/tertiary/destructive/color/neutral` (no background change)
+- Background (pressed): `nova/button/tertiary/destructive/color/tertiary`
+- Border (default): none
+- Border (hover): `nova/border/basic` width, `nova/button/tertiary/destructive/color/secondary` color
+- Border (pressed): `nova/border/basic` width, `nova/button/tertiary/destructive/color/primary` color
+- Text (default): `nova/button/tertiary/destructive/color/primary`
 - Text (hover): `nova/button/tertiary/destructive/color/secondary`
+- Text (pressed): `nova/button/tertiary/destructive/color/primary`
 
 #### Focus State
 **All Variants:**
@@ -321,12 +291,8 @@ The state when the button is not interactive.
 - Rely only on color to distinguish button types
 
 ### Semantic Meaning
-- **Destructive/Error:** Use for actions that delete data, remove items, or cannot be undone
-- **Success:** Use for confirmations or completing positive actions
-- **Warning:** Use for actions that require caution or might have unexpected consequences
-- **Informative:** Use for actions that provide information or help
-- **Neutral:** Use for neutral actions without specific semantic weight
-- **Feature:** Use to highlight new features or special promotions
+- **Destructive:** Use for actions that delete data, remove items, or cannot be undone
+- **Default:** Use for standard actions without specific semantic weight
 
 ---
 

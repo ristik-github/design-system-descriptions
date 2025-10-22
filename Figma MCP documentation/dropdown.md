@@ -29,17 +29,28 @@ The dropdown menu is collapsed and hidden. Only the input field with label is vi
 The dropdown menu is expanded and visible below the input field.
 
 **Visual State:**
-- Input field shows focus ring
 - Border color: `nova/input/color/secondary` (#889192)
-- Focus ring: 2px `nova/color/focus` (#9ef1e4)
 - Dropdown menu visible below with list of options
 - Dropdown menu has shadow: `0px 8px 24px 0px rgba(0,0,0,0.13)`
-- First/hovered option highlighted with background color
+- First option highlighted with background color when opened via keyboard
 
 **Use When:**
 - User clicks on the input field
 - User uses keyboard to open dropdown (Space/Enter)
 - Dropdown is actively being interacted with
+
+#### Dropdown Focused
+The dropdown trigger is focused but not necessarily open.
+
+**Visual State:**
+- Focus ring: 2px `nova/color/focus` (#9ef1e4) appears around input
+- Border color remains: `nova/input/color/accent` (#c1cacb) when closed, or `nova/input/color/secondary` (#889192) when open
+- Focus ring is visible whenever dropdown trigger has keyboard focus (e.g., via Tab key navigation)
+
+**Use When:**
+- User navigates to dropdown using Tab key
+- Dropdown has keyboard focus but is not yet opened
+- Provides clear visual indicator for keyboard navigation users
 
 ---
 
@@ -480,12 +491,14 @@ The dropdown component consists of three main sections:
 - Or wrap label around input structure
 
 ### Keyboard Navigation
-- **Tab:** Moves focus to/from dropdown
-- **Space/Enter:** Opens dropdown menu when closed
-- **Arrow Up/Down:** Navigate through options when open
-- **Space/Enter:** Select highlighted option
-- **Escape:** Close dropdown without selection
-- **Tab:** Close dropdown and move to next focusable element
+- **Tab:** Moves focus to dropdown trigger (when closed) or closes dropdown and moves to next focusable element (when open)
+- **Space/Enter (when closed):** Opens dropdown menu and focuses first option
+- **Arrow Up/Down (when open):** Navigate through dropdown options
+- **Space/Enter (when open):** Select currently highlighted option
+  - In single-select mode: Selects option and closes dropdown
+  - In multi-select mode: Toggles option selection, dropdown remains open
+- **Escape:** Closes dropdown without making selection
+- **Note:** Tab key does NOT cycle through options within the dropdown; it moves focus to the next element on the page
 
 ### Screen Readers
 - Input field should announce current selection or placeholder
@@ -495,10 +508,12 @@ The dropdown component consists of three main sections:
 - Chip removal should announce "removed [option name]"
 
 ### Focus Management
-- Focus ring must be clearly visible when dropdown is open
-- Focus should move to first option when dropdown opens
-- Focus should return to input when dropdown closes
-- Removing chip should maintain focus on input
+- Focus ring must be clearly visible whenever dropdown trigger has keyboard focus (not only when open)
+- Focus ring appears when user tabs to the dropdown, providing clear visual indicator
+- When dropdown opens via keyboard (Space/Enter), focus automatically moves to first option
+- Arrow Up/Down keys navigate between options (Tab key does not cycle through options)
+- When dropdown closes (Escape, Tab, or selection in single-select), focus returns to dropdown trigger
+- Removing chip via keyboard maintains focus on the chip container or input
 
 ### ARIA Attributes
 
@@ -699,8 +714,10 @@ The Dropdown is a **composite form component** combining a label, input field, d
 - **Checked:** Dark teal background (`nova/input/color/highlight1`), white checkmark icon (16×16px)
 
 **Focus Ring:**
-- Appears **inside** the input field border when dropdown is open
+- Appears as a 2px box-shadow around the input field whenever it has keyboard focus
 - 2px width, `nova/color/focus` color (#9ef1e4)
+- Visible when dropdown trigger is focused via Tab key navigation, regardless of open/closed state
+- Provides clear visual indicator for keyboard navigation accessibility
 - Matches input border radius (8px)
 
 **Dropdown Menu Scrolling:**

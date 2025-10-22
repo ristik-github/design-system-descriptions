@@ -53,6 +53,7 @@ The Header Top Nav is a comprehensive application-level navigation component tha
 - Height: 52px (padding top/bottom: `nova/spacing/tight` 8px)
 - Horizontal padding: Left `nova/spacing/close` (12px), Right `nova/spacing/tight` (8px)
 - Gap between sections: `nova/spacing/tight` (8px)
+- **Positioning & Margins:** `nova/spacing/tight` (8px) margin on all sides from page edges
 
 **Logo & Branding Section:**
 - Logo mark: 20.049px × 19.819px
@@ -80,7 +81,40 @@ The Header Top Nav is a comprehensive application-level navigation component tha
 - Search placeholder text: `nova/color/static/white-60%` (rgba(255,255,255,0.62)), `nova/typography/base/regular` (14px Regular, 130% line height)
 - Search padding: Right `nova/spacing/next` (4px)
 - Icon buttons: 36px square, `nova/radii/component/button` (8px) border radius
-- Global actions container: 36px `nova/radii/full` (36px) rounded pill, teal 700 background, `nova/spacing/next` (4px) internal gap/padding
+
+**Global Actions Frame:**
+
+The Global Actions is a frame component that groups the help icon and user avatar together in a unified visual container.
+
+**Container Specifications:**
+- Display: Flex row
+- Alignment: Center (vertically aligned items)
+- Gap: `nova/spacing/next` (4px) between help icon and avatar
+- Padding: `nova/spacing/next` (4px) on all sides
+- Background: `global/color/muted-teal/700` (#185956)
+- Border Radius: `nova/radii/full` (36px) - creates a pill/capsule shape
+- Height: 32px (24px icons + 4px padding top + 4px padding bottom)
+- Width: Variable based on content:
+  - With help icon: 60px (24px help + 4px gap + 24px avatar + 8px total padding)
+  - Without help icon: 32px (24px avatar + 8px total padding)
+
+**Help Icon (when Show Help=true):**
+- Size: 24px × 24px
+- Icon: Question mark in circle (support/help icon)
+- Color: White
+- Position: First item in frame (left side)
+
+**Avatar:**
+- Size: 24px × 24px
+- Shape: Circular image
+- Position: Last item in frame (right side)
+- Content: User profile photo
+
+**Visual Behavior:**
+- The frame creates a cohesive visual grouping for user-related actions
+- The pill shape with matching background color ties the elements together
+- When help icon is hidden (Show Help=false), only the avatar is displayed within the frame
+- The frame maintains consistent spacing and visual weight with other header elements
 
 **Secondary Navigation (when enabled):**
 - Background: `global/color/pale-green/150` (#e7f4eb - lightest green)
@@ -91,6 +125,7 @@ The Header Top Nav is a comprehensive application-level navigation component tha
 - Active sub-nav text: `global/color/pale-green/150` (#e7f4eb)
 - Hover sub-nav background: `global/color/pale-green/200` (#d3e4d6)
 - Default sub-nav text: `global/color/green/900` (#042f22)
+- **Note:** Secondary navigation shares the same 8px margin system as primary navigation bar
 
 ### Width=Large, Legacy=on, Vertical Nav=off (Classic Large Desktop)
 
@@ -192,7 +227,7 @@ The Header Top Nav is a comprehensive application-level navigation component tha
 ### Structure
 
 ```
-Header Top Nav
+Header Top Nav (with 8px margin on all sides from page edges)
 ├── Primary Navigation Bar (height: 52px)
 │   ├── Logo & Branding Section
 │   │   ├── Logo mark (20×20px)
@@ -208,6 +243,10 @@ Header Top Nav
 └── Secondary Navigation (optional, 48px height)
     └── Sub-nav items (32px height, 8px radius)
 ```
+
+**Margin System:**
+- All sides: `nova/spacing/tight` (8px) from page edges
+- When combined with Vertical Navigation: The header's bottom margin and vertical nav's top margin share the same 8px space, creating a single 8px gap between components (not additive)
 
 **Alternative Layouts:**
 
@@ -246,7 +285,6 @@ Header Top Nav
 - **Enter/Space**: Activate selected nav item or button
 - **Arrow keys**: Navigate between nav items within navigation group
 - **Escape**: Close menu (when Vertical Nav=on and menu open)
-- **/** (forward slash): Focus search input (common shortcut)
 
 ### ARIA Attributes
 - Navigation container: `role="navigation"`, `aria-label="Main navigation"`
@@ -339,6 +377,8 @@ Header Top Nav
 ### Component Architecture
 - **Layered z-index:** Primary bar (z-index: 3 for Legacy), Secondary nav (z-index: 2), ensures proper stacking
 - **Fixed positioning:** Typically fixed to top of viewport for persistent access
+- **Margin spacing:** 8px margin on all sides from page edges using `nova/spacing/tight`
+- **Adjacent component spacing:** When used with Vertical Navigation, margins are shared (not additive) creating a single 8px gap
 - **Shadow elevation:** Consider subtle shadow (0px 2px 4px rgba(0,0,0,0.1)) to separate from content
 
 ### State Transitions

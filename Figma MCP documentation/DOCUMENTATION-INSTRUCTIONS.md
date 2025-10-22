@@ -314,37 +314,64 @@ When documenting dimensions (height, width, etc.):
 
 ❌ **WRONG:**
 - "Height: 52px" (hardcoded value)
+- "Height: Auto (typically ~18px with padding)" (calculated height that's redundant)
 - "Padding: 16px on all sides" (hardcoded value)
 - "Border: 1px solid" (hardcoded value)
 
 ✅ **CORRECT:**
-- "Height: `nova/spacing/close` (12px) top/bottom padding + 28px content" (explains calculation)
+- "Width: Hug contents" (for auto-layout components)
+- "Height: Hug contents" (for auto-layout components)
 - "Padding: `nova/spacing/near` (16px) on all sides"
 - "Border: `nova/border/basic` (1px) solid"
 
+**IMPORTANT: Hug Contents vs Calculated Heights**
+
+❌ **DO NOT document calculated heights when components use auto-layout/hug contents:**
+- "Height: ~18px (2px padding + 14px line height + 2px padding)" - WRONG, redundant
+- "Total height: ~52px" - WRONG if it's derived from padding + content
+
+✅ **INSTEAD, document the actual properties:**
+- "Height: Hug contents" - The component automatically sizes to its content
+- "Width: Hug contents" - The component automatically sizes to its content
+- Then document the properties that determine the size:
+  - Padding (with tokens)
+  - Typography (with tokens)
+  - Content
+
+**Why This Matters:**
+- Height/width are **derived** from padding, typography, and content when using auto-layout
+- Documenting derived values is redundant and confusing
+- It creates maintenance issues - if padding changes, calculated heights become wrong
+- Only document the **actual properties** that Figma shows (padding, typography, etc.)
+
 **When Dimensions Don't Have Tokens:**
-- If a dimension is calculated (e.g., padding + content), explain the calculation using tokens
-- If no token exists, document the raw value with note: "No token found for this dimension"
-- Example: "Content height: 28px (no token found)"
+- If a dimension is calculated (e.g., padding + content), DON'T document the calculation - just document "Hug contents"
+- If it's a FIXED dimension (not hug contents), document the raw value with note: "No token found for this dimension"
+- Example: "Fixed height: 28px (no token found)"
 - Don't make up dimensions - only document what's visible in Figma
 
 **Examples of Correct Dimension Documentation:**
+
 ```markdown
 ### Dimensions
 
 **Title Bar:**
-- Height: Calculated from padding + content
-  - Top padding: `nova/spacing/close` (12px)
-  - Content: 28px (minimum height based on typography)
-  - Bottom padding: `nova/spacing/close` (12px)
-  - Total: ~52px
 - Width: Full width of container
+- Height: Hug contents
+- Padding: `nova/spacing/close` (12px) top and bottom
+- Sizing behavior: Full width, height adapts to content
 
 **Badge:**
-- Height: Auto (based on typography + padding)
-- Width: Auto (based on content)
+- Width: Hug contents
+- Height: Hug contents
 - Padding vertical: `nova/spacing/next` (4px)
 - Padding horizontal: `nova/spacing/tight` (8px)
+- Sizing behavior: Adapts to content in both dimensions
+
+**Fixed Size Component:**
+- Width: 200px (fixed)
+- Height: 48px (fixed, no token found)
+- Padding: `nova/spacing/tight` (8px)
 ```
 
 ---

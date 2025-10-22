@@ -21,13 +21,18 @@ This is a **composite component** consisting of:
 
 **Dimensions:**
 - Width: `256px`
-- Height: Variable (expands based on content)
+- Height: Full available viewport height minus header height and margins (8px top + 8px bottom = 16px total)
+  - When used with Header Top Nav: Height = `100vh - header height - 16px` (accounting for shared 8px margin between header and nav, plus 8px bottom margin)
 
 **Layout:**
 - Display: Flex column
 - Gap: `nova/spacing/slight` (2px) - vertical spacing between items
 - Padding: `nova/spacing/tight` (8px) horizontal, `nova/spacing/near` (16px) vertical
 - Alignment: Items aligned to end (right-aligned)
+
+**Positioning & Margins:**
+- Margin: `nova/spacing/tight` (8px) on all sides from page edges
+- When used with Header Top Nav: The 8px bottom margin of the header and 8px top margin of the vertical nav share the same space, resulting in a total 8px gap between the two components (not 16px)
 
 **Visual Properties:**
 - Background: `nova/navigation/secondary` (#eff3f3)
@@ -266,6 +271,7 @@ When using vertical navigation, the top bar (Header Top Nav) should be modified:
 - Remove the main navigation items (as they're now in the vertical menu)
 - Add a hamburger menu button on the left side
 - Keep other top bar elements like search, notifications, and user profile
+- The spacing between the header bottom and vertical nav top is a shared 8px (not additive)
 
 ### Page Title Positioning
 Page titles behave differently when using vertical navigation compared to horizontal navigation:
@@ -302,8 +308,8 @@ Note: The page title **cannot** be attached to the main navigation as it would b
 4. **Visual Hierarchy**: Leverage indentation to clearly communicate structure
 5. **Single Selection**: Only one item should be selected at a time
 6. **Responsive Behavior**: Consider collapsing to a hamburger menu on smaller screens
-7. **Persistent Container**: The navigation container should remain visible during navigation
-8. **Scrollable Content**: If the navigation list exceeds the viewport height, make it scrollable
+7. **Persistent Container**: The navigation container should remain visible during navigation and fill the available viewport height
+8. **Scrollable Content**: Navigation items within the container scroll when content exceeds the fixed container height
 
 ### Content Guidelines
 - Navigation labels should be 1-2 words when possible
@@ -321,9 +327,9 @@ Note: The page title **cannot** be attached to the main navigation as it would b
 ## Technical Implementation Notes
 
 ### Container Flexibility
-- The container height should be flexible to accommodate varying numbers of items
-- Implement overflow scrolling if the list exceeds available vertical space
-- Consider adding a maximum height constraint for very long lists
+- The container height is fixed to the available viewport height (minus header and margins)
+- Implement overflow scrolling when navigation items exceed the container height
+- The container itself does not expand beyond the viewport; internal content scrolls instead
 
 ### Hierarchy Indentation
 The hierarchy is achieved through progressive left padding:

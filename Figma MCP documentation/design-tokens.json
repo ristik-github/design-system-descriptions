@@ -553,7 +553,71 @@
       }
     },
     "typography": {
-      "font-stack": "Geist, Arial, 'Helvetica Neue', Helvetica, sans-serif"
+      "font-stack": "Geist, Arial, 'Helvetica Neue', Helvetica, sans-serif",
+      "heading": {
+        "1": {
+          "fontFamily": "Geist",
+          "fontSize": "24px",
+          "fontWeight": "600",
+          "lineHeight": "140%"
+        },
+        "2": {
+          "fontFamily": "Geist",
+          "fontSize": "20px",
+          "fontWeight": "600",
+          "lineHeight": "140%"
+        },
+        "3": {
+          "fontFamily": "Geist",
+          "fontSize": "18px",
+          "fontWeight": "600",
+          "lineHeight": "140%"
+        }
+      },
+      "body": {
+        "regular": {
+          "fontFamily": "Geist",
+          "fontSize": "16px",
+          "fontWeight": "400",
+          "lineHeight": "140%"
+        },
+        "strong": {
+          "fontFamily": "Geist",
+          "fontSize": "16px",
+          "fontWeight": "600",
+          "lineHeight": "140%"
+        }
+      },
+      "base": {
+        "regular": {
+          "fontFamily": "Geist",
+          "fontSize": "14px",
+          "fontWeight": "400",
+          "lineHeight": "130%"
+        },
+        "strong": {
+          "fontFamily": "Geist",
+          "fontSize": "14px",
+          "fontWeight": "600",
+          "lineHeight": "130%"
+        }
+      },
+      "instructional": {
+        "regular": {
+          "fontFamily": "Geist",
+          "fontSize": "14px",
+          "fontWeight": "400",
+          "lineHeight": "120%"
+        }
+      },
+      "supporting": {
+        "regular": {
+          "fontFamily": "Geist",
+          "fontSize": "12px",
+          "fontWeight": "400",
+          "lineHeight": "120%"
+        }
+      }
     },
     "motion": {
       "easing": {
